@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Event Proposal — Marlow &amp; Co. Private Catering</title>
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #2F4A3D;
+    --forest-deep: #1F332A;
+    --cream: #F6F1E7;
+    --cream-warm: #EFE7D8;
+    --gold: #C9A227;
+    --ink: #25291F;
+    --ink-soft: #5C6354;
+    --rule: rgba(47,74,61,0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+
+  /* HEADER */
+  .header {
+    background: var(--forest);
+    color: white;
+    padding: 36px 0;
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .brand-sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+  .proposal-ref {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.7);
+    text-align: right;
+  }
+
+  /* HERO */
+  .hero { padding: 56px 0 40px; border-bottom: 1px solid var(--rule); }
+  .hero .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--forest);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--forest-deep);
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  .hero p { color: var(--ink-soft); font-size: 1.0625rem; max-width: 56ch; }
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item { font-size: 0.875rem; }
+  .hero-meta-item span { display: block; color: var(--ink-soft); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .hero-meta-item strong { color: var(--forest-deep); font-weight: 600; }
+
+  /* PACKAGE */
+  .section { padding: 48px 0; border-bottom: 1px solid var(--rule); }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--forest-deep);
+    margin-bottom: 20px;
+  }
+  .package-desc { color: var(--ink-soft); margin-bottom: 28px; max-width: 60ch; }
+
+  .line-item {
+    border-bottom: 1px solid var(--rule);
+    padding: 0;
+  }
+  .line-item:last-child { border-bottom: none; }
+  .line-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    cursor: pointer;
+  }
+  .line-item-label strong { display: block; color: var(--forest-deep); font-weight: 600; }
+  .line-item-label span { color: var(--ink-soft); font-size: 0.8438rem; }
+  .line-item-right { display: flex; align-items: center; gap: 10px; }
+  .line-item-price { font-weight: 600; color: var(--forest-deep); white-space: nowrap; }
+  .line-item-chevron { color: var(--ink-soft); transition: transform 0.25s ease; flex-shrink: 0; }
+  .line-item.open .line-item-chevron { transform: rotate(180deg); }
+  .line-item-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .line-item.open .line-item-detail { max-height: 220px; }
+  .line-item-detail p { padding: 0 0 18px; color: var(--ink-soft); font-size: 0.875rem; line-height: 1.6; }
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    z-index: 50;
+    transition: transform 0.2s ease;
+  }
+  .whatsapp-float:hover { transform: scale(1.07); }
+  .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* SIGNATURE */
+  .signature-block {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .sig-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--forest-deep);
+    margin-bottom: 10px;
+  }
+  #sigCanvas {
+    width: 100%;
+    height: 140px;
+    border: 1px dashed var(--rule);
+    border-radius: 4px;
+    background: var(--cream);
+    touch-action: none;
+    cursor: crosshair;
+    display: block;
+  }
+  .sig-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .sig-clear {
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .sig-status { font-size: 0.75rem; color: var(--ink-soft); }
+  .btn-accept:disabled { opacity: 0.45; cursor: not-allowed; }
+  .btn-accept:disabled:hover { background: var(--gold); }
+
+  /* CREDENTIALS STRIP */
+  .credentials-strip { background: var(--forest); padding: 28px 0; }
+  .cred-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; }
+  .cred-item { color: white; font-size: 0.8125rem; flex: 1; min-width: 130px; }
+  .cred-item strong { display: block; color: var(--gold); font-size: 0.9375rem; font-weight: 700; margin-bottom: 2px; font-family: 'Playfair Display', serif; }
+  .cred-item span { color: rgba(255,255,255,0.6); font-size: 0.75rem; }
+
+  /* SCOPE CATEGORIES */
+  .scope-category { margin-bottom: 30px; }
+  .scope-category:last-child { margin-bottom: 0; }
+  .scope-category-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  /* EXCLUSIONS */
+  .exclusions-box {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 24px;
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .exclusions-box strong { color: var(--forest-deep); }
+
+  /* PAYMENT SCHEDULE */
+  .payment-schedule { display: flex; flex-direction: column; gap: 2px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; border-radius: 6px; overflow: hidden; }
+  .payment-stage { background: white; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .payment-stage-label strong { display: block; color: var(--forest-deep); font-weight: 600; font-size: 0.9375rem; }
+  .payment-stage-label span { color: var(--ink-soft); font-size: 0.8125rem; }
+  .payment-stage-amount { font-weight: 700; color: var(--gold); font-size: 1.0625rem; white-space: nowrap; padding-left: 16px; }
+
+  /* CROSS-SELL */
+  .maintenance-box {
+    background: var(--forest);
+    color: white;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .maintenance-box h4 { font-size: 1.0625rem; margin-bottom: 6px; color: white; font-family: 'Playfair Display', serif; font-weight: 600; }
+  .maintenance-box p { color: rgba(255,255,255,0.65); font-size: 0.875rem; max-width: 48ch; }
+  .maintenance-cta { background: var(--gold); color: var(--forest-deep); padding: 10px 20px; border-radius: 6px; font-size: 0.8438rem; font-weight: 700; white-space: nowrap; text-decoration: none; flex-shrink: 0; }
+
+  /* TERMS */
+  .terms-note { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.8; }
+  .terms-note strong { color: var(--forest-deep); }
+
+  /* ADD-ONS */
+  .addon {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .addon:hover { border-color: var(--gold); }
+  .addon.checked { border-color: var(--gold); background: var(--cream-warm); }
+  .addon input {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--gold);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .addon-text { flex: 1; }
+  .addon-text strong { display: block; color: var(--forest-deep); font-size: 0.9375rem; margin-bottom: 2px; }
+  .addon-text span { color: var(--ink-soft); font-size: 0.8438rem; }
+  .addon-price { font-weight: 600; color: var(--gold); white-space: nowrap; font-size: 0.9375rem; }
+
+  /* INVESTMENT SUMMARY */
+  .summary {
+    background: var(--forest);
+    color: white;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin-top: 28px;
+  }
+  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9375rem; color: rgba(255,255,255,0.75); }
+  .summary-row.total {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 12px;
+    padding-top: 16px;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: white;
+  }
+  .summary-row.total span:last-child { color: var(--gold); }
+  .summary-note { font-size: 0.75rem; color: rgba(255,255,255,0.55); margin-top: 16px; }
+
+  /* CTA */
+  .cta-section { padding: 48px 0 64px; }
+  .cta-buttons { display: flex; flex-direction: column; gap: 12px; max-width: 360px; }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .btn-accept { background: var(--gold); color: var(--forest-deep); }
+  .btn-accept:hover { background: #B8941F; }
+  .btn-accept.accepted { background: var(--forest); color: white; }
+  .btn-call { background: var(--forest); color: white; }
+  .btn-call:hover { background: var(--forest-deep); }
+  .btn-pdf { background: transparent; color: var(--forest); border-color: var(--rule); }
+  .btn-pdf:hover { border-color: var(--forest); }
+
+  .badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--forest);
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  footer { padding: 24px 0; text-align: center; font-size: 0.75rem; color: var(--ink-soft); }
+
+  @media (max-width: 600px) {
+    .hero-meta { gap: 20px; }
+    .summary { padding: 24px 24px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <div>
+        <div class="brand-name">Marlow &amp; Co.</div>
+        <div class="brand-sub">Private Catering</div>
+      </div>
+      <div class="proposal-ref">Proposal Ref: MC-2026-0147</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="badge-live"><span class="badge-dot"></span>Live, interactive proposal</span>
+      <span class="eyebrow">Private Event Proposal</span>
+      <h1>A celebration menu, built around your day.</h1>
+      <p>Thank you for considering Marlow &amp; Co. for your event. Below is your tailored package — adjust the optional extras to see your investment update in real time.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><span>Event date</span><strong>Saturday, 12 September 2026</strong></div>
+        <div class="hero-meta-item"><span>Guest count</span><strong>80 guests</strong></div>
+        <div class="hero-meta-item"><span>Service style</span><strong>Plated dinner</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="credentials-strip">
+    <div class="container">
+      <div class="cred-grid">
+        <div class="cred-item"><strong>In-House Team</strong><span>No agency staff, ever</span></div>
+        <div class="cred-item"><strong>Food Hygiene 5★</strong><span>Top rating, every kitchen</span></div>
+        <div class="cred-item"><strong>£5M Cover</strong><span>Public liability insurance</span></div>
+        <div class="cred-item"><strong>Allergen-Trained</strong><span>Full team, every event</span></div>
+        <div class="cred-item"><strong>10+ Years</strong><span>Private events across the South West</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Your package</h2>
+      <p class="package-desc">A three-course plated dinner for 80 guests — menu, staffing, equipment and full on-the-day logistics. Everything below is included in the price unless stated under Exclusions.</p>
+
+      <div class="scope-category">
+        <p class="scope-category-title">Menu &amp; Service</p>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Three-course plated dinner</strong><span>Seasonal menu, tasting included</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">£2,200</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Includes a private tasting session four weeks before your event, with menu adjustments for dietary requirements at no extra cost. Seasonal ingredients sourced from local suppliers where possible.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Allergen &amp; dietary management</strong><span>Full guest-list matching against declared allergies</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Every declared allergy or dietary requirement is logged against the guest list and confirmed with you ahead of the event. Plated meals for affected guests are flagged at point of service so the right plate reaches the right person, every time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scope-category">
+        <p class="scope-category-title">Front-of-House Staffing</p>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Front-of-house service team</strong><span>4 staff, 6-hour service window</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Uniformed serving staff, arriving 90 minutes before guests for setup. Team includes one lead server coordinating directly with your venue or planner on timings — you don't manage the staff, we do.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Staffing ratio</strong><span>1 server per 20 guests, plated service</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Industry-standard ratio for plated dinner service, ensuring courses are served within the correct window and tables are cleared promptly between courses. Ratio increases automatically if guest count rises above 80.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scope-category">
+        <p class="scope-category-title">Equipment, Linen &amp; Styling</p>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Linens, crockery &amp; setup</strong><span>Full table styling and breakdown</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Ivory linen tablecloths and napkins, full crockery and cutlery for the plated dinner, and complete breakdown after service so your venue is left exactly as found — no separate cleaning crew needed from you.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>On-the-day logistics</strong><span>Arrival, setup window and venue coordination</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Our team liaises directly with your venue ahead of the day to confirm kitchen access, load-in times and any site-specific requirements — you're not the go-between for two suppliers trying to coordinate a schedule.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="exclusions-box">
+        <strong>Exclusions:</strong> venue hire and room booking fees, alcohol licensing (where a licensed bar is required and not already in place at your venue), travel beyond 30 miles of Bristol, and any dietary requirement notified within 7 days of the event (best efforts made, but full accommodation cannot be guaranteed at short notice).
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Optional extras</h2>
+      <p class="package-desc">Tick any of the below to add to your package — your total updates instantly.</p>
+
+      <label class="addon">
+        <input type="checkbox" data-price="350">
+        <div class="addon-text">
+          <strong>Canapés reception</strong>
+          <span>6 canapés per guest, served on arrival</span>
+        </div>
+        <div class="addon-price">+£350</div>
+      </label>
+
+      <label class="addon">
+        <input type="checkbox" data-price="450">
+        <div class="addon-text">
+          <strong>Premium bar service</strong>
+          <span>Dedicated bartender, welcome cocktail included</span>
+        </div>
+        <div class="addon-price">+£450</div>
+      </label>
+
+      <label class="addon">
+        <input type="checkbox" data-price="280">
+        <div class="addon-text">
+          <strong>Late-night food station</strong>
+          <span>Wood-fired pizza station, served from 10pm</span>
+        </div>
+        <div class="addon-price">+£280</div>
+      </label>
+
+      <div class="summary">
+        <div class="summary-row"><span>Base package</span><span id="basePrice">£2,200</span></div>
+        <div class="summary-row"><span>Optional extras</span><span id="addonTotal">£0</span></div>
+        <div class="summary-row total"><span>Total investment</span><span id="grandTotal">£2,200</span></div>
+        <p class="summary-note">Pricing excludes travel beyond 30 miles of Bristol. Final invoice issued on confirmation.</p>
+      </div>
+
+      <div class="maintenance-box">
+        <div>
+          <h4>Hosting again next year?</h4>
+          <p>Returning clients get priority booking and a complimentary menu tasting refresh for repeat events. Ask us about multi-event packages.</p>
+        </div>
+        <a href="#" class="maintenance-cta">Ask about repeat bookings</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Payment schedule</h2>
+      <p class="package-desc">Staged against your total investment above — updates automatically as you add optional extras.</p>
+      <div class="payment-schedule">
+        <div class="payment-stage">
+          <div class="payment-stage-label"><strong>Stage 1 — Deposit (50%)</strong><span>Due on booking confirmation</span></div>
+          <div class="payment-stage-amount" id="payStage1">£1,100</div>
+        </div>
+        <div class="payment-stage">
+          <div class="payment-stage-label"><strong>Stage 2 — Balance (50%)</strong><span>Due 14 days before your event</span></div>
+          <div class="payment-stage-amount" id="payStage2">£1,100</div>
+        </div>
+      </div>
+      <p class="terms-note" style="margin-top: 28px;">
+        <strong>Cancellation:</strong> deposits are non-refundable within 60 days of the event. <strong>Final numbers:</strong> guest count must be confirmed no later than 14 days before the event — this is what your balance invoice is based on. <strong>Dietary changes:</strong> best efforts made for requirements notified after the tasting, but full accommodation cannot be guaranteed inside 7 days.
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-buttons">
+        <div class="signature-block">
+          <label class="sig-label">Sign to accept this quote</label>
+          <canvas id="sigCanvas"></canvas>
+          <div class="sig-actions">
+            <button class="sig-clear" id="sigClear" type="button">Clear signature</button>
+            <span class="sig-status" id="sigStatus">Draw your signature above</span>
+          </div>
+        </div>
+        <button class="btn btn-accept" id="acceptBtn" disabled>Accept Quote</button>
+        <a href="#" class="btn btn-call">Book a call</a>
+        <button class="btn btn-pdf" id="pdfBtn">Download PDF</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    This is a demo proposal built by Campbell Consultancy to illustrate live, interactive proposal automation.
+  </footer>
+
+  <a href="https://wa.me/447418351865" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp" title="WhatsApp — demo integration point">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.149-.149.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.05-.52-.099-.149-.687-1.654-.84-2.264-.149-.61-.298-.521-.4-.521-.099 0-.371-.025-.62-.025-.247 0-.62.124-.793.297-.173.174-.62.61-.62 1.487 0 .876.62 1.727.967 2.123.347.396 1.69 2.58 4.097 3.55 2.41.97 2.41.768 2.832.694.421-.074 1.355-.546 1.553-1.075.198-.529.198-.99.149-1.075-.05-.074-.297-.099-.595-.25z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.143.566 4.146 1.555 5.882L0 24l6.32-1.658A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.07-1.391l-.363-.215-3.756.985.998-3.65-.237-.375A9.952 9.952 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+  </a>
+
+<script>
+  const base = 2200;
+  const checkboxes = document.querySelectorAll('.addon input[type="checkbox"]');
+  const addonTotalEl = document.getElementById('addonTotal');
+  const grandTotalEl = document.getElementById('grandTotal');
+  const payStage1El = document.getElementById('payStage1');
+  const payStage2El = document.getElementById('payStage2');
+
+  function formatGBP(n) {
+    return '£' + Math.round(n).toLocaleString('en-GB');
+  }
+
+  function updateTotal() {
+    let addonSum = 0;
+    checkboxes.forEach(cb => {
+      const label = cb.closest('.addon');
+      if (cb.checked) {
+        addonSum += parseInt(cb.dataset.price, 10);
+        label.classList.add('checked');
+      } else {
+        label.classList.remove('checked');
+      }
+    });
+    const total = base + addonSum;
+    addonTotalEl.textContent = formatGBP(addonSum);
+    grandTotalEl.textContent = formatGBP(total);
+    payStage1El.textContent = formatGBP(total * 0.5);
+    payStage2El.textContent = formatGBP(total * 0.5);
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener('change', updateTotal));
+
+  // Accordion
+  document.querySelectorAll('.line-item-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.closest('.line-item').classList.toggle('open');
+    });
+  });
+
+  // Signature pad
+  const canvas = document.getElementById('sigCanvas');
+  const ctx = canvas.getContext('2d');
+  const acceptBtn = document.getElementById('acceptBtn');
+  const sigStatus = document.getElementById('sigStatus');
+  const sigClear = document.getElementById('sigClear');
+  let drawing = false;
+  let hasDrawn = false;
+
+  function resizeCanvas() {
+    const ratio = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+    ctx.scale(ratio, ratio);
+    ctx.strokeStyle = '#2F4A3D';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+  }
+  window.addEventListener('resize', () => { resizeCanvas(); hasDrawn = false; acceptBtn.disabled = true; sigStatus.textContent = 'Draw your signature above'; });
+  resizeCanvas();
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const point = e.touches ? e.touches[0] : e;
+    return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+  }
+
+  function startDraw(e) {
+    drawing = true;
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+    e.preventDefault();
+  }
+  function moveDraw(e) {
+    if (!drawing) return;
+    const pos = getPos(e);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+    hasDrawn = true;
+    acceptBtn.disabled = false;
+    sigStatus.textContent = 'Signature captured';
+    e.preventDefault();
+  }
+  function endDraw() { drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', moveDraw);
+  canvas.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('mouseleave', endDraw);
+  canvas.addEventListener('touchstart', startDraw);
+  canvas.addEventListener('touchmove', moveDraw);
+  canvas.addEventListener('touchend', endDraw);
+
+  sigClear.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hasDrawn = false;
+    acceptBtn.disabled = true;
+    sigStatus.textContent = 'Draw your signature above';
+  });
+
+  acceptBtn.addEventListener('click', function () {
+    if (!hasDrawn) return;
+    this.textContent = 'Quote Accepted ✓';
+    this.classList.add('accepted');
+  });
+
+  document.getElementById('pdfBtn').addEventListener('click', function () {
+    window.print();
+  });
+</script>
+
+</body>
+</html>

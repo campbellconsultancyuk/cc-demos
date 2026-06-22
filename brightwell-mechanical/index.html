@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Installation Proposal — Brightwell Mechanical Services</title>
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F2A4A;
+    --navy-deep: #081A30;
+    --amber: #C9622B;
+    --amber-deep: #A84F22;
+    --paper: #F4F5F7;
+    --paper-warm: #ECEEF1;
+    --ink: #1A2330;
+    --ink-soft: #5A6677;
+    --rule: rgba(15,42,74,0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    color: white;
+    padding: 36px 0;
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .brand-name {
+    font-size: 1.375rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .brand-sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .proposal-ref {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    text-align: right;
+  }
+
+  /* HERO */
+  .hero { padding: 56px 0 40px; border-bottom: 1px solid var(--rule); background: white; }
+  .hero .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber-deep);
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .hero h1 {
+    font-size: clamp(1.625rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+  .hero p { color: var(--ink-soft); font-size: 1.0625rem; max-width: 58ch; }
+  .hero-meta { display: flex; gap: 32px; margin-top: 28px; flex-wrap: wrap; }
+  .hero-meta-item { font-size: 0.875rem; }
+  .hero-meta-item span { display: block; color: var(--ink-soft); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .hero-meta-item strong { color: var(--navy); font-weight: 700; }
+
+  /* SECTIONS */
+  .section { padding: 48px 0; border-bottom: 1px solid var(--rule); background: white; }
+  .section:nth-of-type(even) { background: var(--paper-warm); }
+  .section h2 {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .package-desc { color: var(--ink-soft); margin-bottom: 28px; max-width: 62ch; }
+
+  .line-item {
+    border-bottom: 1px solid var(--rule);
+    padding: 0;
+  }
+  .line-item:last-child { border-bottom: none; }
+  .line-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    cursor: pointer;
+  }
+  .line-item-label strong { display: block; color: var(--navy); font-weight: 700; }
+  .line-item-label span { color: var(--ink-soft); font-size: 0.8438rem; }
+  .line-item-right { display: flex; align-items: center; gap: 10px; }
+  .line-item-price { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .line-item-chevron { color: var(--ink-soft); transition: transform 0.25s ease; flex-shrink: 0; }
+  .line-item.open .line-item-chevron { transform: rotate(180deg); }
+  .line-item-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .line-item.open .line-item-detail { max-height: 220px; }
+  .line-item-detail p { padding: 0 0 18px; color: var(--ink-soft); font-size: 0.875rem; line-height: 1.6; }
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    z-index: 50;
+    transition: transform 0.2s ease;
+  }
+  .whatsapp-float:hover { transform: scale(1.07); }
+  .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* SIGNATURE */
+  .signature-block {
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .sig-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  #sigCanvas {
+    width: 100%;
+    height: 140px;
+    border: 1px dashed var(--rule);
+    border-radius: 4px;
+    background: white;
+    touch-action: none;
+    cursor: crosshair;
+    display: block;
+  }
+  .sig-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .sig-clear {
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .sig-status { font-size: 0.75rem; color: var(--ink-soft); }
+  .btn-accept:disabled { opacity: 0.45; cursor: not-allowed; }
+  .btn-accept:disabled:hover { background: var(--amber); }
+
+  /* CREDENTIALS STRIP */
+  .credentials-strip { background: var(--navy); padding: 28px 0; }
+  .cred-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; }
+  .cred-item { color: white; font-size: 0.8125rem; flex: 1; min-width: 130px; }
+  .cred-item strong { display: block; color: var(--amber); font-size: 0.9375rem; font-weight: 800; margin-bottom: 2px; }
+  .cred-item span { color: rgba(255,255,255,0.55); font-size: 0.75rem; }
+
+  /* SCOPE CATEGORIES */
+  .scope-category { margin-bottom: 30px; }
+  .scope-category:last-child { margin-bottom: 0; }
+  .scope-category-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--amber-deep);
+    margin-bottom: 4px;
+  }
+
+  /* EXCLUSIONS */
+  .exclusions-box {
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 24px;
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .exclusions-box strong { color: var(--navy); }
+
+  /* PAYMENT SCHEDULE */
+  .payment-schedule { display: flex; flex-direction: column; gap: 2px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .payment-stage { background: white; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .payment-stage-label strong { display: block; color: var(--navy); font-weight: 700; font-size: 0.9375rem; }
+  .payment-stage-label span { color: var(--ink-soft); font-size: 0.8125rem; }
+  .payment-stage-amount { font-weight: 800; color: var(--amber-deep); font-size: 1.0625rem; white-space: nowrap; padding-left: 16px; }
+
+  /* MAINTENANCE CROSS-SELL */
+  .maintenance-box {
+    background: var(--navy);
+    color: white;
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .maintenance-box h4 { font-size: 1.0625rem; margin-bottom: 6px; color: white; font-weight: 800; }
+  .maintenance-box p { color: rgba(255,255,255,0.65); font-size: 0.875rem; max-width: 48ch; }
+  .maintenance-cta { background: var(--amber); color: white; padding: 10px 20px; border-radius: 4px; font-size: 0.8438rem; font-weight: 700; white-space: nowrap; text-decoration: none; flex-shrink: 0; }
+
+  /* TERMS */
+  .terms-note { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.8; }
+  .terms-note strong { color: var(--navy); }
+
+  /* ADD-ONS */
+  .addon {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .addon:hover { border-color: var(--amber); }
+  .addon.checked { border-color: var(--amber); background: #FBEFE8; }
+  .addon input {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--amber);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .addon-text { flex: 1; }
+  .addon-text strong { display: block; color: var(--navy); font-size: 0.9375rem; margin-bottom: 2px; font-weight: 700; }
+  .addon-text span { color: var(--ink-soft); font-size: 0.8438rem; }
+  .addon-price { font-weight: 700; color: var(--amber-deep); white-space: nowrap; font-size: 0.9375rem; }
+
+  /* SUMMARY */
+  .summary {
+    background: var(--navy);
+    color: white;
+    border-radius: 4px;
+    padding: 32px 36px;
+    margin-top: 28px;
+  }
+  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9375rem; color: rgba(255,255,255,0.7); }
+  .summary-row.total {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 12px;
+    padding-top: 16px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+  }
+  .summary-row.total span:last-child { color: var(--amber); }
+  .summary-note { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 16px; }
+
+  /* CTA */
+  .cta-section { padding: 48px 0 64px; background: white; }
+  .cta-buttons { display: flex; flex-direction: column; gap: 12px; max-width: 360px; }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .btn-accept { background: var(--amber); color: white; }
+  .btn-accept:hover { background: var(--amber-deep); }
+  .btn-accept.accepted { background: var(--navy); }
+  .btn-call { background: var(--navy); color: white; }
+  .btn-call:hover { background: var(--navy-deep); }
+  .btn-pdf { background: transparent; color: var(--navy); border-color: var(--rule); }
+  .btn-pdf:hover { border-color: var(--navy); }
+
+  .badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+
+  footer { padding: 24px 0; text-align: center; font-size: 0.75rem; color: var(--ink-soft); background: var(--paper-warm); }
+
+  @media (max-width: 600px) {
+    .hero-meta { gap: 20px; }
+    .summary { padding: 24px 24px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <div>
+        <div class="brand-name">Brightwell Mechanical</div>
+        <div class="brand-sub">Commercial HVAC &amp; Extraction</div>
+      </div>
+      <div class="proposal-ref">Quote Ref: BM-2026-0392</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="badge-live"><span class="badge-dot"></span>Live, interactive proposal</span>
+      <span class="eyebrow">Commercial Installation Quote</span>
+      <h1>Kitchen extraction installation, scoped to spec.</h1>
+      <p>Thank you for the opportunity to quote on this installation. Below is your itemised package — select any additional works to see your total update instantly.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><span>Site</span><strong>Commercial kitchen, ground floor</strong></div>
+        <div class="hero-meta-item"><span>Proposed start</span><strong>3 weeks from approval</strong></div>
+        <div class="hero-meta-item"><span>Duration</span><strong>4–5 working days</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="credentials-strip">
+    <div class="container">
+      <div class="cred-grid">
+        <div class="cred-item"><strong>In-House Engineers</strong><span>No subcontracting, ever</span></div>
+        <div class="cred-item"><strong>BESA Certified</strong><span>HV041523</span></div>
+        <div class="cred-item"><strong>F-Gas Registered</strong><span>FGAS3008812</span></div>
+        <div class="cred-item"><strong>£10M Cover</strong><span>Public liability &amp; PI</span></div>
+        <div class="cred-item"><strong>15+ Years</strong><span>Trading across the South East</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Core installation</h2>
+      <p class="package-desc">Full kitchen extraction system install — supply, fabrication, electrical and commissioning, carried out entirely by our own engineers. Everything below is included in the price unless stated under Exclusions.</p>
+
+      <div class="scope-category">
+        <p class="scope-category-title">Extraction System</p>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Stainless steel extraction canopy hood</strong><span>Sized to cover the cooking line, grease baffles included</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">£8,400</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>304-grade stainless steel canopy, sized and positioned to cover the full cooking line confirmed at survey. 304-grade is the commercial kitchen standard — corrosion resistant, easy to clean, built to last. Grease baffles fitted as standard.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>High-pressure centrifugal fan with inverter drive</strong><span>Specified to the duct run's static pressure</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Fan selected to overcome the static pressure resistance of the surveyed duct run. The inverter drive gives variable speed control — turn it down during quieter periods to cut noise and energy use, up to full extraction during service.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>In-line acoustic silencer</strong><span>Fitted between fan and discharge point</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Attenuates fan noise at source. In a live trading environment, noise bleed from kitchen extraction into customer-facing space is a real concern — the silencer is specified to address this rather than relying on duct lagging alone.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scope-category">
+        <p class="scope-category-title">Ductwork &amp; Distribution</p>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Ductwork fabrication &amp; install</strong><span>Full run from canopy to discharge point</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>All ductwork fabricated in-house to the route confirmed on site survey — including all bends, transitions and sections to complete the run. Exact length confirmed on installation day; the price reflects the surveyed estimate.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>TR19-compliant access panels</strong><span>Installed at 2-metre intervals throughout the run</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>A mandatory TR19 requirement — access panels must be present throughout the duct run for inspection and cleaning. Without them, the system cannot receive a TR19 certificate and your insurance may be at risk.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Rubber flexible connections</strong><span>At canopy spigot and fan inlet/outlet</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Isolates vibration from the fan motor so it doesn't transmit through the ductwork into the building structure, and allows minor positional tolerance during installation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scope-category">
+        <p class="scope-category-title">Electrical &amp; Ancillaries</p>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Dedicated circuit breaker</strong><span>Supply and installation for the extraction fan</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Dedicated breaker supplied and installed as part of this contract. Connection point to the incoming electrical supply confirmed on site — any works to the incoming supply itself are by others.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>Full fitting kit</strong><span>All fixings, brackets, hangers and supports</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Everything needed to secure the canopy, ductwork and fan properly in position is included in the price — no day-one conversations about missing materials.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scope-category">
+        <p class="scope-category-title">Commissioning &amp; Handover</p>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>System commissioning &amp; airflow balancing</strong><span>TR19 compliance certificate issued on completion</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>Once installed, we run the system up, verify extraction performance at the canopy face, and set the inverter to the correct operating speed. The system is left working, not just installed — TR19 certificate issued same day.</p>
+          </div>
+        </div>
+        <div class="line-item">
+          <div class="line-item-header">
+            <div class="line-item-label"><strong>As-fitted drawings &amp; data sheets</strong><span>Issued on completion, plus a full client walkthrough</span></div>
+            <div class="line-item-right">
+              <div class="line-item-price">Included</div>
+              <svg class="line-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="line-item-detail">
+            <p>A record of the installed system — duct route, fan position, access panel locations — required for TR19 cleaning records and future maintenance. We walk you through the system before leaving: how to operate it, what to check, and your ongoing TR19 obligations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="exclusions-box">
+        <strong>Exclusions:</strong> building works and structural penetrations beyond those described, planning permission (we can advise), gas supply works, fire suppression, and electrical connection to the incoming supply (by others). Any work not explicitly listed above will be priced and confirmed in writing before commencement.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Additional works</h2>
+      <p class="package-desc">Optional extras available alongside the core install — tick to add to your total.</p>
+
+      <label class="addon">
+        <input type="checkbox" data-price="1200">
+        <div class="addon-text">
+          <strong>Extended warranty &amp; service plan</strong>
+          <span>3-year cover, two scheduled services per year</span>
+        </div>
+        <div class="addon-price">+£1,200</div>
+      </label>
+
+      <label class="addon">
+        <input type="checkbox" data-price="950">
+        <div class="addon-text">
+          <strong>Out-of-hours installation</strong>
+          <span>Work completed evenings/weekends to avoid trading disruption</span>
+        </div>
+        <div class="addon-price">+£950</div>
+      </label>
+
+      <label class="addon">
+        <input type="checkbox" data-price="650">
+        <div class="addon-text">
+          <strong>Additional ductwork run</strong>
+          <span>Extension to cover secondary prep area</span>
+        </div>
+        <div class="addon-price">+£650</div>
+      </label>
+
+      <div class="summary">
+        <div class="summary-row"><span>Core installation</span><span id="basePrice">£8,400</span></div>
+        <div class="summary-row"><span>Additional works</span><span id="addonTotal">£0</span></div>
+        <div class="summary-row total"><span>Total investment</span><span id="grandTotal">£8,400</span></div>
+        <p class="summary-note">All prices exclude VAT. Quote valid for 30 days from issue.</p>
+      </div>
+
+      <div class="maintenance-box">
+        <div>
+          <h4>Your system will need regular TR19 cleaning</h4>
+          <p>Once installed, your extraction system must be cleaned at TR19-compliant intervals to stay EHO-compliant and keep your insurance valid. We already know your system — ask us about a cleaning contract.</p>
+        </div>
+        <a href="#" class="maintenance-cta">Ask about a cleaning contract</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Payment schedule</h2>
+      <p class="package-desc">Staged against your total investment above — updates automatically as you add optional works.</p>
+      <div class="payment-schedule">
+        <div class="payment-stage">
+          <div class="payment-stage-label"><strong>Stage 1 — Deposit (60%)</strong><span>Due on order confirmation</span></div>
+          <div class="payment-stage-amount" id="payStage1">£5,040</div>
+        </div>
+        <div class="payment-stage">
+          <div class="payment-stage-label"><strong>Stage 2 — Midpoint (30%)</strong><span>Due at midpoint of installation</span></div>
+          <div class="payment-stage-amount" id="payStage2">£2,520</div>
+        </div>
+        <div class="payment-stage">
+          <div class="payment-stage-label"><strong>Stage 3 — Completion (10%)</strong><span>Due on practical completion</span></div>
+          <div class="payment-stage-amount" id="payStage3">£840</div>
+        </div>
+      </div>
+      <p class="terms-note" style="margin-top: 28px;">
+        <strong>Warranty:</strong> all labour and parts carry a 3-year warranty from the date of practical completion.
+        &nbsp;<strong>Equipment ownership:</strong> all installed equipment remains the property of Brightwell Mechanical Services until full payment has been received.
+        &nbsp;<strong>Standards:</strong> all works carried out in accordance with F-Gas, BESA DW 172/144 and the EMAQ+ Specification Guide.
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-buttons">
+        <div class="signature-block">
+          <label class="sig-label">Sign to accept this quote</label>
+          <canvas id="sigCanvas"></canvas>
+          <div class="sig-actions">
+            <button class="sig-clear" id="sigClear" type="button">Clear signature</button>
+            <span class="sig-status" id="sigStatus">Draw your signature above</span>
+          </div>
+        </div>
+        <button class="btn btn-accept" id="acceptBtn" disabled>Accept Quote</button>
+        <a href="#" class="btn btn-call">Book a call</a>
+        <button class="btn btn-pdf" id="pdfBtn">Download PDF</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    This is a demo proposal built by Campbell Consultancy to illustrate live, interactive proposal automation.
+  </footer>
+
+  <a href="https://wa.me/447418351865" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp" title="WhatsApp — demo integration point">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.149-.149.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.05-.52-.099-.149-.687-1.654-.84-2.264-.149-.61-.298-.521-.4-.521-.099 0-.371-.025-.62-.025-.247 0-.62.124-.793.297-.173.174-.62.61-.62 1.487 0 .876.62 1.727.967 2.123.347.396 1.69 2.58 4.097 3.55 2.41.97 2.41.768 2.832.694.421-.074 1.355-.546 1.553-1.075.198-.529.198-.99.149-1.075-.05-.074-.297-.099-.595-.25z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.143.566 4.146 1.555 5.882L0 24l6.32-1.658A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.07-1.391l-.363-.215-3.756.985.998-3.65-.237-.375A9.952 9.952 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+  </a>
+
+<script>
+  const base = 8400;
+  const checkboxes = document.querySelectorAll('.addon input[type="checkbox"]');
+  const addonTotalEl = document.getElementById('addonTotal');
+  const grandTotalEl = document.getElementById('grandTotal');
+  const payStage1El = document.getElementById('payStage1');
+  const payStage2El = document.getElementById('payStage2');
+  const payStage3El = document.getElementById('payStage3');
+
+  function formatGBP(n) {
+    return '£' + Math.round(n).toLocaleString('en-GB');
+  }
+
+  function updateTotal() {
+    let addonSum = 0;
+    checkboxes.forEach(cb => {
+      const label = cb.closest('.addon');
+      if (cb.checked) {
+        addonSum += parseInt(cb.dataset.price, 10);
+        label.classList.add('checked');
+      } else {
+        label.classList.remove('checked');
+      }
+    });
+    const total = base + addonSum;
+    addonTotalEl.textContent = formatGBP(addonSum);
+    grandTotalEl.textContent = formatGBP(total);
+    payStage1El.textContent = formatGBP(total * 0.6);
+    payStage2El.textContent = formatGBP(total * 0.3);
+    payStage3El.textContent = formatGBP(total * 0.1);
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener('change', updateTotal));
+
+  // Accordion
+  document.querySelectorAll('.line-item-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.closest('.line-item').classList.toggle('open');
+    });
+  });
+
+  // Signature pad
+  const canvas = document.getElementById('sigCanvas');
+  const ctx = canvas.getContext('2d');
+  const acceptBtn = document.getElementById('acceptBtn');
+  const sigStatus = document.getElementById('sigStatus');
+  const sigClear = document.getElementById('sigClear');
+  let drawing = false;
+  let hasDrawn = false;
+
+  function resizeCanvas() {
+    const ratio = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+    ctx.scale(ratio, ratio);
+    ctx.strokeStyle = '#0F2A4A';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+  }
+  window.addEventListener('resize', () => { resizeCanvas(); hasDrawn = false; acceptBtn.disabled = true; sigStatus.textContent = 'Draw your signature above'; });
+  resizeCanvas();
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const point = e.touches ? e.touches[0] : e;
+    return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+  }
+
+  function startDraw(e) {
+    drawing = true;
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+    e.preventDefault();
+  }
+  function moveDraw(e) {
+    if (!drawing) return;
+    const pos = getPos(e);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+    hasDrawn = true;
+    acceptBtn.disabled = false;
+    sigStatus.textContent = 'Signature captured';
+    e.preventDefault();
+  }
+  function endDraw() { drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', moveDraw);
+  canvas.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('mouseleave', endDraw);
+  canvas.addEventListener('touchstart', startDraw);
+  canvas.addEventListener('touchmove', moveDraw);
+  canvas.addEventListener('touchend', endDraw);
+
+  sigClear.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hasDrawn = false;
+    acceptBtn.disabled = true;
+    sigStatus.textContent = 'Draw your signature above';
+  });
+
+  acceptBtn.addEventListener('click', function () {
+    if (!hasDrawn) return;
+    this.textContent = 'Quote Accepted ✓';
+    this.classList.add('accepted');
+  });
+
+  document.getElementById('pdfBtn').addEventListener('click', function () {
+    window.print();
+  });
+</script>
+
+</body>
+</html>
