@@ -1,0 +1,33 @@
+{
+  "out_dir": "/home/claude/cc-demos/social",
+  "prefix": "archetype-slide",
+  "shots_dir": "/tmp/claude-0/-home-claude/da585e95-0da7-509c-82df-2093849ec1c6/scratchpad/shots",
+  "logo": "/home/claude/campbell-consultancy-site/public/brand/Campbell_Consultancy_Logo_Pack/02_Horizontal/PNG_Transparent/horizontal-white-1024px.png",
+  "url_label": "archetype-studio.uk",
+  "slides": [
+    {"bg": "grad", "label": "NEW WORK  ·  01 / 05", "size": 92,
+     "headline": [["Archetype Studio,\n", false], ["shipped.", true]],
+     "body": "A new website for a Leicester-based architectural design consultancy. Live now at archetype-studio.uk",
+     "browser": "splash-desktop.png", "browser_w": 800, "browser_crop": 520, "img_top": 560,
+     "phone": "home-mobile.png", "phone_x": 720, "phone_w": 300},
+    {"label": "02  —  THE HOMEPAGE",
+     "headline": [["Clear from\nthe ", false], ["first scroll.", true]],
+     "body": "What they do, who they do it for, and one obvious next step. No clutter.",
+     "browser": "home-desktop-tall.png", "browser_crop": 640,
+     "stat": ["100", "PageSpeed performance score\nat launch, mobile and desktop"]},
+    {"label": "03  —  THE WORK",
+     "headline": [["Their projects,\n", false], ["front and centre.", true]],
+     "body": "A scrollable portfolio with a page for every project, from first sketch to finished space.",
+     "browser": "work-desktop.png", "browser_crop": 560, "phone": "work-mobile.png"},
+    {"label": "04  —  THE PROJECT CHECKER",
+     "headline": [["Visitors in.\n", false], ["Enquiries out.", true]],
+     "body": "A five-step checker pulls planning data for the address, writes a quick summary and drops a ready-to-call lead into their inbox.",
+     "browser": "checker-desktop.png", "browser_crop": 520, "phone": "checker-mobile.png"},
+    {"bg": "grad", "label": "05  —  YOUR TURN", "size": 84,
+     "headline": [["Need a website\nthat ", false], ["brings in work?", true]],
+     "body": "Fast, built to be found on Google, and yours to keep. No platform fees, no lock-in.",
+     "body_size": 34,
+     "quote": ["“Amazing service from start to finish.”", "Huzaifa Mulla, Owner, Archetype Studio", "★★★★★  Google review"],
+     "contact": ["Message us", "hello@campbellconsultancy.co", "campbellconsultancy.co"]}
+  ]
+}
