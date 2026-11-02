@@ -1,0 +1,25 @@
+{
+  "out_dir": "/home/claude/cc-demos/social",
+  "prefix": "glassai-tracker-slide",
+  "logo": "/home/claude/campbell-consultancy-site/public/brand/Campbell_Consultancy_Logo_Pack/02_Horizontal/PNG_Transparent/horizontal-white-1024px.png",
+  "source": "Featured in the Glass.AI AI Adoption Tracker, October 2026",
+  "slides": [
+    {"bg": "feature", "top": 300, "size": 112,
+     "headline": [["Real results,\n", false], ["noticed.", true]],
+     "body": "Fan Rescue's WhatsApp AI agent is featured in the Glass.AI AI Adoption Tracker, October 2026.",
+     "body_size": 40, "body_gap": 40,
+     "sub": "Alongside Siemens, Jet2 and Morgan Sindall."},
+    {"bg": "pattern", "bignum": "22", "size": 68, "show_source": true,
+     "headline": [["invoices raised in Xero\nfrom a WhatsApp message.", false]],
+     "body": "First 90 days of the agent."},
+    {"bg": "pattern", "bignum": "14", "size": 68, "show_source": true,
+     "headline": [["proposals generated and\nsent from the field.", false]],
+     "body": "First 90 days of the agent."},
+    {"bg": "pattern", "bignum": "10 hrs", "size": 68, "show_source": true,
+     "headline": [["a week saved on\nCRM admin.", false]],
+     "body": "By Fan Rescue's own estimate."},
+    {"bg": "feature", "top": 260, "size": 76,
+     "headline": [["Office running on\nWhatsApp and memory?\n", false], ["We fix that.", true]],
+     "contact": ["Message us", "hello@campbellconsultancy.co", "campbellconsultancy.co"]}
+  ]
+}
